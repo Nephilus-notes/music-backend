@@ -23,3 +23,4 @@ class Show(models.Model):
     short_description = models.CharField(max_length=100)    
     event_type = models.CharField(max_length=100)
     image_url = models.CharField(max_length=100,null=True, blank=True)
+    patron_attendees = models.ManyToManyField('Patron', through='ShowPatron')

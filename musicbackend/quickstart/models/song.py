@@ -19,3 +19,4 @@ class Song(models.Model):
     deleted_at = models.DateTimeField(null=True, blank=True)
     deleted = models.BooleanField(default=False)
     sets = models.ManyToManyField('Setlist', through='SetlistSong')
+    requesting_patrons = models.ManyToManyField('Patron', through='SongPatron')
