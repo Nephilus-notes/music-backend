@@ -1,10 +1,18 @@
 from django.shortcuts import render
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
+from rest_framework_swagger.views import get_swagger_view
+# from django.conf.urls import url
 
 # Create your views here.
 
 from quickstart.serializers import GroupSerializer, UserSerializer
+
+# schema_view = get_swagger_view(title='Music API')
+
+# urlpatterns = [
+#     url(r'^$', schema_view),
+# ]
 
 
 class UserViewSet(viewsets.ModelViewSet):
