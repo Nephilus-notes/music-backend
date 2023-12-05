@@ -103,7 +103,7 @@ class ShowSerializer(serializers.Serializer):
     short_description = serializers.CharField(max_length=100)    
     event_type = serializers.CharField(max_length=100)
     image_url = serializers.CharField(max_length=100, required=False)
-    patron_attendees = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    patron_attendees = serializers.PrimaryKeyRelatedField(many=True, read_only=True, required=False)
     
     def create(self, validated_data):
         """
@@ -157,8 +157,8 @@ class SongSerializer(serializers.Serializer):
     updated_at = serializers.DateTimeField(required=False)
     deleted_at = serializers.DateTimeField(required=False)
     deleted = serializers.BooleanField(required=False)
-    sets = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    requesting_patrons = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    sets = serializers.PrimaryKeyRelatedField(many=True, read_only=True, required=False)
+    requesting_patrons = serializers.PrimaryKeyRelatedField(many=True, read_only=True, required=False)
     
     def create(self, validated_data):
         """
@@ -200,8 +200,8 @@ class SetlistSerializer(serializers.Serializer):
     updated_at = serializers.DateTimeField(required=False)
     deleted_at = serializers.DateTimeField(required=False)
     deleted = serializers.BooleanField(required=False)
-    shows = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    songs = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    shows = serializers.PrimaryKeyRelatedField(many=True, read_only=True, required=False)
+    songs = serializers.PrimaryKeyRelatedField(many=True, read_only=True, required=False)
     
     def create(self, validated_data):
         """

@@ -6,6 +6,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 
+from .models import Setlist, Show, Patron, Song
+from .serializers import SetlistSerializer, ShowSerializer, PatronSerializer, SongSerializer
+
 # from django.conf.urls import url
 
 
@@ -41,4 +44,28 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 def getShows(request):
-    return Response({"message": "Hello, world!"})
+
+    shows = Show.objects.all()
+    serializer = ShowSerializer(shows, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getSongs(request):
+
+    songs = Song.objects.all()
+    serializer = SongSerializer(songs, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getPatrons(request):
+
+    patrons = Patron.objects.all()
+    serializer = PatronSerializer(patrons, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getSetlists(request):
+
+    setlists = Setlist.objects.all()
+    serializer = SetlistSerializer(setlists, many=True)
+    return Response(serializer.data)
