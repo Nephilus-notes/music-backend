@@ -69,3 +69,19 @@ def getSetlists(request):
     setlists = Setlist.objects.all()
     serializer = SetlistSerializer(setlists, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def postSong(request):
+    '''Create a new song object in the database to be learned'''
+    serializer = SongSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def postSubscriber(request):
+    '''Create a new subscriber object in the database'''
+    serializer = PatronSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)

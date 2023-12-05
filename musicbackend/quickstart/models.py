@@ -83,6 +83,7 @@ class Song(models.Model):
     deleted = models.BooleanField(default=False)
     sets = models.ManyToManyField('Setlist')
     requesting_patrons = models.ManyToManyField('Patron')
+    known = models.BooleanField(default=False)
 
 # class ShowPatron(models.Model):
 #     patron_id = models.ForeignKey(

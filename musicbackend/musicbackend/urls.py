@@ -34,6 +34,8 @@ urlpatterns = [
     path('patrons/', views.getPatrons),
     path('songs/', views.getSongs),
     path('setlists/', views.getSetlists),
+    path('subscribe/', views.postSubscriber),
+    path('reuqest_song_to_learn/', views.postSong),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
