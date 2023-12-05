@@ -85,5 +85,14 @@ class Song(models.Model):
     requesting_patrons = models.ManyToManyField('Patron')
     known = models.BooleanField(default=False)
 
-# class ShowPatron(models.Model):
-#     patron_id = models.ForeignKey(
+class SongSetlist(models.Model):
+    id = models.AutoField(primary_key=True)
+    song_id = models.ForeignKey(
+        'Song',
+        on_delete=models.CASCADE,
+    )
+    setlist_id = models.ForeignKey(
+        'Setlist',
+        on_delete=models.CASCADE,
+    )
+    order_number = models.IntegerField()
