@@ -1,4 +1,12 @@
-.env
+/env
+*.env
 __pycache__/
 
 backend_venv/
+/migrations
+migrations/
+
+db.sqlite3
+
+*.pyc
+.vscode
