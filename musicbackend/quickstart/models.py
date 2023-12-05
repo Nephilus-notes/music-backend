@@ -81,8 +81,8 @@ class Song(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
     deleted = models.BooleanField(default=False)
-    sets = models.ManyToManyField('Setlist')
-    requesting_patrons = models.ManyToManyField('Patron')
+    sets = models.ManyToManyField('Setlist', null=True, blank=True)
+    requesting_patrons = models.ManyToManyField('Patron', null=True, blank=True)
     known = models.BooleanField(default=False)
 
 class SongSetlist(models.Model):
