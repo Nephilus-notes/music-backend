@@ -5,7 +5,7 @@ from rest_framework import serializers
 # from .models import Show
 # from .models import Patron
 # from .models import Setlist
-from .models import Setlist, Show, Patron, Song
+from .models import Setlist, Show, Patron, Song, Log
 
 # from quickstart.models import Patron
 
@@ -221,5 +221,30 @@ class SetlistSerializer(serializers.Serializer):
         instance.deleted = validated_data.get('deleted', instance.deleted)
         instance.show_id = validated_data.get('show_id', instance.show_id)
         instance.songs = validated_data.get('songs', instance.songs)
+        instance.save()
+        return instance
+    
+# add serializer for logs
+class LogSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    log_type = serializers.CharField(max_length=100)
+    log_message = serializers.DateTimeField(required=False)
+    created_at = serializers.DateTimeField(required=False)
+    
+
+    def create(self, validated_data):
+        """
+        Create and return a new `Log` instance, given the validated data.
+        """
+        return Log.objects.create(**validated_data)
+    
+    def update(self, instance, validated_data):
+        """
+        Update and return an existing `Log` instance given the validated data
+        """
+        
+        instance.log_type = validated_data.get('log_type', instance.log_type)
+        instance.log_message = validated_data.get('log_message', instance.log_message)
+        instance.created_at = validated_data.get('created_at', instance.created_at)
         instance.save()
         return instance

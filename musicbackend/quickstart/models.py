@@ -96,3 +96,9 @@ class SongSetlist(models.Model):
         on_delete=models.CASCADE,
     )
     order_number = models.IntegerField()
+
+class Log(models.Model):
+    id = models.AutoField(primary_key=True)
+    log_type = models.CharField(max_length=100)
+    log_message = models.TextField()
+    log_date = models.DateTimeField(auto_now_add=True)
