@@ -52,6 +52,7 @@ def getShows(request):
 @api_view(['GET'])
 def getShow(request, show_id):
 
+    print(f'trying to get a show {show_id}')
     show = Show.objects.get(id=show_id)
     serializer = ShowSerializer(show)
     return Response(serializer.data)

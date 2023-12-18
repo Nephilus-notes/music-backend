@@ -31,9 +31,13 @@ router.register(r'groups', views.GroupViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('shows/', views.getShows),
+    path('shows/<int:id>', views.getShow),
     path('patrons/', views.getPatrons),
+    path('patrons/<int:id>/', views.getPatron),
     path('songs/', views.getSongs),
+    path('songs/<int:id>/', views.getSong),
     path('setlists/', views.getSetlists),
+    path('setlists/<int:id>/', views.getSetlist),
     path('subscribe/', views.postSubscriber),
     path('request_song_to_learn/', views.postSong),
     path('admin/', admin.site.urls),
