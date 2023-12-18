@@ -50,10 +50,24 @@ def getShows(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def getShow(request, show_id):
+
+    show = Show.objects.get(id=show_id)
+    serializer = ShowSerializer(show)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def getSongs(request):
 
     songs = Song.objects.all()
     serializer = SongSerializer(songs, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getSong(request, song_id):
+
+    song = Song.objects.get(id=song_id)
+    serializer = SongSerializer(song)
     return Response(serializer.data)
 
 @api_view(['GET'])
@@ -64,10 +78,24 @@ def getPatrons(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def getPatron(request, patron_id):
+
+    patron = Patron.objects.get(id=patron_id)
+    serializer = PatronSerializer(patron)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def getSetlists(request):
 
     setlists = Setlist.objects.all()
     serializer = SetlistSerializer(setlists, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getSetlist(request, setlist_id):
+
+    setlist = Setlist.objects.get(id=setlist_id)
+    serializer = SetlistSerializer(setlist)
     return Response(serializer.data)
 
 @api_view(['POST'])
