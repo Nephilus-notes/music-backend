@@ -64,20 +64,34 @@ def getSongs(request):
     serializer = SongSerializer(songs, many=True)
     return Response(serializer.data)
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT'])
 def getSongById(request, id):
-
-    song = Song.objects.get(id=id)
-    serializer = SongSerializer(song)
-    return Response(serializer.data)
+    if request.method == 'PUT':
+        song = Song.objects.get(id=id)
+        serializer = SongSerializer(song, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response(serializer.data)
+    
+    elif request.method == 'GET':
+        song = Song.objects.get(id=id)
+        serializer = SongSerializer(song)
+        return Response(serializer.data)
 
 @api_view(['GET'])
 def getSongByTitle(request, title):
-
+    if title is None:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    if title.strip() == '':
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
     song = Song.objects.get(title=title)
-    serializer = SongSerializer(song)
-    return Response(serializer.data)
-
+    if song:
+        serializer = SongSerializer(song)
+        return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
 @api_view(['GET'])
 def getPatrons(request):
 
