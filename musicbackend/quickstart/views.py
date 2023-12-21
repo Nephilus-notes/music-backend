@@ -65,9 +65,16 @@ def getSongs(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def getSong(request, id):
+def getSongById(request, id):
 
     song = Song.objects.get(id=id)
+    serializer = SongSerializer(song)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getSongByTitle(request, title):
+
+    song = Song.objects.get(title=title)
     serializer = SongSerializer(song)
     return Response(serializer.data)
 
