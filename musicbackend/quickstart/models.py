@@ -97,6 +97,18 @@ class SongSetlist(models.Model):
     )
     order_number = models.IntegerField()
 
+class ShowSetlist(models.Model):
+    id = models.AutoField(primary_key=True)
+    show_id = models.ForeignKey(
+        'Show',
+        on_delete=models.CASCADE,
+    )
+    setlist_id = models.ForeignKey(
+        'Setlist',
+        on_delete=models.CASCADE,
+    )
+    order_number = models.IntegerField()
+
 class Log(models.Model):
     id = models.AutoField(primary_key=True)
     log_type = models.CharField(max_length=100)
