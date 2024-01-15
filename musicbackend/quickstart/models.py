@@ -119,12 +119,15 @@ class SongRequest(models.Model):
     id = models.AutoField(primary_key=True)
     song_id = models.ForeignKey(
         'Song',
+        on_delete=models.DO_NOTHING,
     )
     show_id = models.ForeignKey(
         'Show',
+        on_delete=models.DO_NOTHING,
     )
     name = models.CharField(max_length=100)
     patron_id = models.ForeignKey(
-        'Patron', null=True, blank=True
+        'Patron', null=True, blank=True,
+        on_delete=models.DO_NOTHING,
     )
     
